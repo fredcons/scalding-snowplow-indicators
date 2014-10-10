@@ -19,20 +19,21 @@ import org.specs2.mutable.Specification
 import com.twitter.scalding._
 
 class SnowplowIndicatorsTest extends Specification {
+
+  import SnowplowSchemas._
   /*
-  "A WordCount job" should {
-    JobTest("com.snowplowanalytics.hadoop.scalding.WordCountJob").
+  "A snowplow indicators job" should {
+    JobTest("com.snowplowanalytics.hadoop.scalding.SnowplowIndicatorsJob").
       arg("input", "inputFile").
       arg("output", "outputFile").
-      source(TextLine("inputFile"), List("0" -> "hack hack hack and hack")).
+      source(Tsv("inputFile"), List(("","web","2014-09-02 03:34:12.532","2014-09-02 00:47:42.000","2014-09-02 00:47:20.288","struct","950ded44-b246-4f5a-93fc-9589751f19af","603013","cf","js-2.0.0","cloudfront","hadoop-0.6.0-common-0.5.0","","88.170.210.x","4092229060","df0a4eb2523fc689","2","","FR","A8","Paris","","48.8667","2.3332977","Ile-de-France","","","","","http://www.renault.fr/gamme-renault/vehicules-particuliers/twingo/twingo/configurateur/","","http://www.tf1.fr/auto-moto/actualite/renault-twingo-2014-prix-a-partir-de-10-800-euros-8478041.html","http","www.renault.fr","80","/gamme-renault/vehicules-particuliers/twingo/twingo/configurateur/","","","http","www.tf1.fr","80","/auto-moto/actualite/renault-twingo-2014-prix-a-partir-de-10-800-euros-8478041.html","","","unknown","","","","","","","","","Discovered | Navigation","Navigation buttons","Top | OPTIONS & ACCESSOIRES","","","","","","","","","","","","","","","","","","","","","","Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36","Chrome","Chrome","36.0.1985.143","Browser","WEBKIT","fr","1","1","1","0","0","0","1","0","1","1","24","1680","925","Windows","Windows","Microsoft Corporation","Europe/Berlin","Computer","0","1680","1050","UTF-8","1663","928"))).
       sink[(String,Int)](Tsv("outputFile")){ outputBuffer =>
         val outMap = outputBuffer.toMap
-        "count words correctly" in {
-          outMap("hack") must be_==(4)
-          outMap("and") must be_==(1)
+        "count by country correctly" in {
+          outMap("FR") must be_==(1)
         }
       }.
       run.
       finish
-  } */
+  }*/
 }
