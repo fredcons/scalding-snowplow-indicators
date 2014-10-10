@@ -29,6 +29,8 @@ object Dependencies {
     val scaldingCore = "com.twitter"                %%  "scalding-core"       % V.scalding
     val hadoopCore   = "org.apache.hadoop"          %   "hadoop-core"         % V.hadoop      // % "provided"
     // Add additional libraries from mvnrepository.com (SBT syntax) here...
+    val jodaTime     = "joda-time" % "joda-time" % "2.4"
+    val jodaConvert     = "org.joda" % "joda-convert" % "1.5"
 
     // Scala (test only)
     val specs2       = "org.specs2"                 %% "specs2"               % V.specs2       % "test"

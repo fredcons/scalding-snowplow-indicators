@@ -19,10 +19,13 @@ import com.twitter.scalding._
 class SnowplowIndicatorsJob(args : Args) extends Job(args) {
 
   import SnowplowSchemas._
+  import SnowplowWrapper._
 
   Tsv(args("input"), SNOWPLOW_INPUT_SCHEMA)
     .read
-    .groupBy('geo_country) { _.size }
+    .filterByPageViews
+    .normalizeDatePrecision
+    .groupByNormalizedDate
     .write(Tsv( args("output")))
 
 }

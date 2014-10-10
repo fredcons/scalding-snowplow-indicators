@@ -30,7 +30,9 @@ object ScaldingSnowplowIndicatorsProjectBuild extends Build {
       libraryDependencies ++= Seq(
         Libraries.scaldingCore,
         Libraries.hadoopCore,
-        Libraries.specs2
+        Libraries.specs2,
+        Libraries.jodaTime,
+        Libraries.jodaConvert
         // Add your additional libraries here (comma-separated)...
       )
     )
