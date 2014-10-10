@@ -21,11 +21,37 @@ class SnowplowIndicatorsJob(args : Args) extends Job(args) {
   import SnowplowSchemas._
   import SnowplowWrapper._
 
-  Tsv(args("input"), SNOWPLOW_INPUT_SCHEMA)
-    .read
-    .filterByPageViews
-    .normalizeDatePrecision
-    .groupByNormalizedDate
-    .write(Tsv( args("output")))
+  val inputFile = Tsv(args("input"), SNOWPLOW_INPUT_SCHEMA)
+
+  inputFile.read
+           .filterByPageViews
+           .normalizeDatePrecision
+           .groupByNormalizedDate
+           .write(Tsv( args("output") + "/dashboard_hits_by_day_hour"))
+
+  inputFile.read
+           .filterByPageViews
+           .normalizeDatePrecision
+           .uniqueVisitors
+           .groupByNormalizedDate
+           .write(Tsv( args("output") + "/dashboard_visitors_by_day_hour"))
+
+  inputFile.read
+           .filterByPageViews
+           .filterByFirstVisit
+           .normalizeDatePrecision
+           .uniqueVisitors
+           .groupByNormalizedDate
+           .write(Tsv( args("output") + "/dashboard_new_visitors_by_day_hour"))
+
+
+  inputFile.read
+           .filterByPageViews
+           .filterByReturningVisit
+           .normalizeDatePrecision
+           .uniqueVisitors
+           .groupByNormalizedDate
+           .write(Tsv( args("output") + "/dashboard_returning_visitors_by_day_hour"))
+
 
 }

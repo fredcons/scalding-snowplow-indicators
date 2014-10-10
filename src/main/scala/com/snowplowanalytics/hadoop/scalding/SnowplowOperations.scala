@@ -20,4 +20,13 @@ trait SnowplowOperations extends FieldConversions {
   def filterByPageViews : Pipe = self
     .filter('event) { event:String => event == "page_view" }
 
+  def filterByFirstVisit : Pipe = self
+    .filter('domain_sessionidx) { domain_sessionidx:Int => domain_sessionidx == 1 }
+
+  def filterByReturningVisit : Pipe = self
+    .filter('domain_sessionidx) { domain_sessionidx:Int => domain_sessionidx > 1 }
+
+  def uniqueVisitors : Pipe = self
+    .unique('collector_tstamp_hour, 'domain_userid)
+
 }
