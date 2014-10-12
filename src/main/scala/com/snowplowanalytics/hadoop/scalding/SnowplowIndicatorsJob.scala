@@ -62,7 +62,6 @@ class SnowplowIndicatorsJob(args : Args) extends Job(args) {
            .write(Tsv( args("output") + "/dashboard_visits_by_day_hour"))
 
   inputFile.read
-           .filterByPageViews
            .normalizeDatePrecision
            .addVisitId
            .normalizeUserAgent
