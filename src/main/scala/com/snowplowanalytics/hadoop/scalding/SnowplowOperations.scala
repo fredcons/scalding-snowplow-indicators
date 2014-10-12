@@ -25,6 +25,9 @@ trait SnowplowOperations extends FieldConversions {
   def groupByNormalizedDateAndUserAgent : Pipe = self
     .groupBy('collector_tstamp_hour, 'normalized_user_agent)  { _.size }
 
+  def groupByNormalizedDateAndSection : Pipe = self
+    .groupBy('collector_tstamp_hour, 'page_section)  { _.size }
+
   def filterByPageViews : Pipe = self
     .filter('event) { event:String => event == "page_view" }
 
@@ -39,6 +42,9 @@ trait SnowplowOperations extends FieldConversions {
 
   def addVisitId : Pipe = self
     .map(('domain_userid, 'domain_sessionidx) -> 'user_visit_id) { record: (String, String) => record._1 + "-" +  record._2 }
+
+  def addSection : Pipe = self
+    .map('page_urlpath -> 'page_section) { page_urlpath: String => SnowplowHelper.extractPageSection(page_urlpath) }
 
   def uniqueVisits : Pipe = self
     .unique('collector_tstamp_hour, 'user_visit_id)

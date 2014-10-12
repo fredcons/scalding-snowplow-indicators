@@ -23,4 +23,27 @@ object SnowplowHelper {
     }
   }
 
+  def extractPageSection(pageUrl:String) = {
+    val sections = pageUrl.split("/")
+    if (sections.length <= 1) normalizeSection("") else normalizeSection(sections(1))
+  }
+
+  def normalizeSection(sectionName: String)= {
+    sectionName match {
+      case "" => "Home"
+      case "gamme-renault" => "VN"
+      case "my-renault" => "MyRenault"
+      case "esc" => "MyRenault"
+      case "vehicules-occasion" => "Occasions"
+      case "apres-vente" => "Après-vente"
+      case "services" => "Services"
+      case "promotions" => "Promotions"
+      case "ebrochure" => "E-Brochure"
+      case "quoteonline" => "QuoteOnLine"
+      case "renault-parc-entreprises" => "Renault Professionnels"
+      case "decouvrez-renault" => "Découvrez Renault"
+      case _ => "Autres"
+    }
+  }
+
 }

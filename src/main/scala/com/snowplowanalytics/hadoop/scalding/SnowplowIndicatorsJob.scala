@@ -69,5 +69,13 @@ class SnowplowIndicatorsJob(args : Args) extends Job(args) {
            .groupByNormalizedDateAndUserAgent
            .write(Tsv( args("output") + "/browser_by_day_hour"))
 
+  //TODO : pages_per_visit_by_day_hour
+
+
+  inputFile.read
+           .normalizeDatePrecision
+           .addSection
+           .groupByNormalizedDateAndSection
+           .write(Tsv( args("output") + "/pages_per_section_by_day_hour"))
 
 }
