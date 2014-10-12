@@ -18,25 +18,11 @@ Finally, you are ready to run this job using the [Amazon Ruby EMR client] [emr-c
       --jar s3n://{{JAR_BUCKET}}/scalding-snowplow-indicators-0.1.0.jar \
       --arg com.snowplowanalytics.hadoop.scalding.SnowplowIndicatorsJob \
       --arg --hdfs \
-      --arg --input --arg s3n://{{IN_BUCKET}}/hello.txt \
+      --arg --input --arg s3n://{{IN_BUCKET}}/snowplow-data.txt \
       --arg --output --arg s3n://{{OUT_BUCKET}}/results
 
 Replace `{{JAR_BUCKET}}`, `{{IN_BUCKET}}` and `{{OUT_BUCKET}}` with the appropriate paths.
 
-### Inspect
-
-Once the output has completed, you should see a folder structure like this in your output bucket:
-
-     results
-     |
-     +- _SUCCESS
-     +- part-00000
-
-Download the `part-00000` file and check that it contains:
-
-	goodbye	1
-	hello	1
-	world	2
 
 ## Running on your own Hadoop cluster
 
@@ -48,6 +34,12 @@ And comment out the Hadoop jar exclusions:
 
     // "hadoop-core-0.20.2.jar", // Provided by Amazon EMR. Delete this line if you're not on EMR
     // "hadoop-tools-0.20.2.jar" // "
+
+### Todo : 
+- Read hive-partitioned data
+- Use driven.cascading.io to monitor jobs
+- Output results to mysql
+- More views
 
 [wordcount]: https://github.com/twitter/scalding/blob/master/README.md
 [scalding]: https://github.com/twitter/scalding/
