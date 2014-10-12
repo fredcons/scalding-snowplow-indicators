@@ -53,5 +53,22 @@ class SnowplowIndicatorsJob(args : Args) extends Job(args) {
            .groupByNormalizedDate
            .write(Tsv( args("output") + "/dashboard_returning_visitors_by_day_hour"))
 
+  inputFile.read
+           .filterByPageViews
+           .normalizeDatePrecision
+           .addVisitId
+           .uniqueVisits
+           .groupByNormalizedDate
+           .write(Tsv( args("output") + "/dashboard_visits_by_day_hour"))
+
+  inputFile.read
+           .filterByPageViews
+           .normalizeDatePrecision
+           .addVisitId
+           .normalizeUserAgent
+           .uniqueVisitsAndUserAgents
+           .groupByNormalizedDateAndUserAgent
+           .write(Tsv( args("output") + "/browser_by_day_hour"))
+
 
 }
