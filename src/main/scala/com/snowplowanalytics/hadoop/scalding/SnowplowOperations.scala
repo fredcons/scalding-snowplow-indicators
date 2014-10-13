@@ -52,5 +52,8 @@ trait SnowplowOperations extends FieldConversions {
   def uniqueVisitsAndUserAgents : Pipe = self
     .unique('collector_tstamp_hour, 'normalized_user_agent, 'user_visit_id)
 
+  def sortAllByNormalizedDate : Pipe = self
+    .groupAll{ _.sortBy('collector_tstamp_hour) }
+
 
 }

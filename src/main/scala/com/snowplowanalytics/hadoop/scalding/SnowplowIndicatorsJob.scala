@@ -27,6 +27,7 @@ class SnowplowIndicatorsJob(args : Args) extends Job(args) {
            .filterByPageViews
            .normalizeDatePrecision
            .groupByNormalizedDate
+           .sortAllByNormalizedDate
            .write(Tsv( args("output") + "/dashboard_hits_by_day_hour"))
 
   inputFile.read
@@ -34,6 +35,7 @@ class SnowplowIndicatorsJob(args : Args) extends Job(args) {
            .normalizeDatePrecision
            .uniqueVisitors
            .groupByNormalizedDate
+           .sortAllByNormalizedDate
            .write(Tsv( args("output") + "/dashboard_visitors_by_day_hour"))
 
   inputFile.read
@@ -42,6 +44,7 @@ class SnowplowIndicatorsJob(args : Args) extends Job(args) {
            .normalizeDatePrecision
            .uniqueVisitors
            .groupByNormalizedDate
+           .sortAllByNormalizedDate
            .write(Tsv( args("output") + "/dashboard_new_visitors_by_day_hour"))
 
 
@@ -51,6 +54,7 @@ class SnowplowIndicatorsJob(args : Args) extends Job(args) {
            .normalizeDatePrecision
            .uniqueVisitors
            .groupByNormalizedDate
+           .sortAllByNormalizedDate
            .write(Tsv( args("output") + "/dashboard_returning_visitors_by_day_hour"))
 
   inputFile.read
@@ -59,6 +63,7 @@ class SnowplowIndicatorsJob(args : Args) extends Job(args) {
            .addVisitId
            .uniqueVisits
            .groupByNormalizedDate
+           .sortAllByNormalizedDate
            .write(Tsv( args("output") + "/dashboard_visits_by_day_hour"))
 
   inputFile.read
