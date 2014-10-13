@@ -7,6 +7,7 @@ object SnowplowHelper {
 
   def transformUserAgent(userAgent:String) = {
     userAgent match {
+      case null => "Other"
       case ua if ua.contains("iPad") => "Tablet"
       case ua if ua.contains("iPhone") => "Phone"
       case ua if ua.contains("Android") => "Phone"
