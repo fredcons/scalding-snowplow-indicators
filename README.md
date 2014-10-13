@@ -43,6 +43,7 @@ And comment out the Hadoop jar exclusions:
 - More views
 - Stop using tsv, manually parse text lines to avoid tuples too large to use scalding testing framework
 - Partitioning, reducers count
+- Use groupAll / sortBy for better-looking results 
 
 [wordcount]: https://github.com/twitter/scalding/blob/master/README.md
 [scalding]: https://github.com/twitter/scalding/
