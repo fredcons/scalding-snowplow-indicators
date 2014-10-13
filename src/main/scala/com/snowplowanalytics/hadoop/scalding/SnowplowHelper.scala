@@ -25,8 +25,12 @@ object SnowplowHelper {
   }
 
   def extractPageSection(pageUrl:String) = {
-    val sections = pageUrl.split("/")
-    if (sections.length <= 1) normalizeSection("") else normalizeSection(sections(1))
+    if (pageUrl == null) {
+      normalizeSection("")
+    } else {
+      val sections = pageUrl.split("/")
+      if (sections.length <= 1) normalizeSection("") else normalizeSection(sections(1))
+    }
   }
 
   def normalizeSection(sectionName: String)= {
