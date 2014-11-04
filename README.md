@@ -38,12 +38,10 @@ And comment out the Hadoop jar exclusions:
 ### Todo : 
 - Read hive-partitioned data
 - Read parquet / avro data 
-- Use driven.cascading.io to monitor jobs
 - Output results to mysql
-- More views
+- Output results to elasticsearch ([scalding-taps])
 - Stop using tsv, manually parse text lines to avoid tuples too large to use scalding testing framework
 - Partitioning, reducers count
-- Use groupAll / sortBy for better-looking results 
 
 [wordcount]: https://github.com/twitter/scalding/blob/master/README.md
 [scalding]: https://github.com/twitter/scalding/
@@ -58,3 +56,4 @@ And comment out the Hadoop jar exclusions:
 [lemur]: https://github.com/TheClimateCorporation/lemur
 [boto]: http://boto.readthedocs.org/en/latest/ref/emr.html
 [license]: http://www.apache.org/licenses/LICENSE-2.0
+[scalding-taps]: http://scalding.io/2014/06/scalding-tap-for-elasticsearch/ 
