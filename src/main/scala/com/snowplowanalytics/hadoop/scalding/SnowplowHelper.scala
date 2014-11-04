@@ -33,7 +33,7 @@ object SnowplowHelper {
     }
   }
 
-  def normalizeSection(sectionName: String)= {
+  def normalizeSection(sectionName: String) = {
     sectionName match {
       case "" => "Home"
       case "gamme-renault" => "VN"
@@ -49,6 +49,11 @@ object SnowplowHelper {
       case "decouvrez-renault" => "Découvrez Renault"
       case _ => "Autres"
     }
+  }
+
+  def jaccardSimilarity(usersInCommon : Double, totalUsers1 : Double, totalUsers2 : Double) = {
+    val union = totalUsers1 + totalUsers2 - usersInCommon
+    usersInCommon / union
   }
 
 }
