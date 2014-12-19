@@ -12,3 +12,5 @@ src_managed/
 project/boot/
 project/plugins/project/
 data/results
+
+build.sbt
